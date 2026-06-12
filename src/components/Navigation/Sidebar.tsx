@@ -68,17 +68,29 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onToggle, mobileOpen, onMobileT
         overflow: 'hidden',
         bgcolor: '#F4F5F7',
         color: '#172B4D',
+        px: open ? 1.5 : 0.5,
       }}
     >
       {/* Project Header */}
-      <Box sx={{ p: open ? 2 : 1, display: 'flex', alignItems: 'center', gap: 1, minHeight: 64 }}>
+      <Box
+        sx={{
+          px: open ? 0.5 : 0,
+          py: 3,
+          display: 'flex',
+          alignItems: 'center',
+          gap: 1,
+          minHeight: 64,
+        }}
+      >
         <Avatar
           data-testid="project-avatar"
           src="https://res.cloudinary.com/dvujyxh7e/image/upload/c_scale,w_256/v1593097745/angular-vietnam-transparent_iwfwxa.png"
+          variant="square"
           sx={{
             bgcolor: 'transparent',
             width: 45,
             height: 45,
+            borderRadius: '3px',
             fontSize: '1rem',
             fontWeight: 700,
             flexShrink: 0,
@@ -99,7 +111,7 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onToggle, mobileOpen, onMobileT
               {project?.name || 'Jira Clone'}
             </Typography>
             <Typography variant="caption" sx={{ color: '#6B778C' }}>
-              Software project
+              Software Project
             </Typography>
           </Box>
         </Collapse>
@@ -126,46 +138,69 @@ const Sidebar: React.FC<SidebarProps> = ({ open, onToggle, mobileOpen, onMobileT
                   onClick={isMobile ? onMobileToggle : undefined}
                   disabled={!isAllowed}
                   sx={{
-                    minHeight: 44,
-                    px: open ? 2 : 1.5,
+                    minHeight: 42,
+                    px: open ? 1.5 : 1.25,
                     justifyContent: open ? 'flex-start' : 'center',
                     borderRadius: 1,
                     mx: 0.5,
                     color: isAllowed ? '#172B4D' : '#7A869A',
                     bgcolor: isActive ? '#DEEBFF' : 'transparent',
-                    '&:hover': { bgcolor: '#EBECF0', color: '#172B4D' },
+                    '&:hover': {
+                      bgcolor: '#EBECF0',
+                      color: '#172B4D',
+                    },
+                    '&:hover .not-implemented-badge': {
+                      opacity: 1,
+                    },
                     '&.active': { bgcolor: '#DEEBFF', color: '#0052CC' },
                   }}
                 >
                   <ListItemIcon
                     sx={{
-                      minWidth: open ? 36 : 'auto',
+                      minWidth: open ? 30 : 'auto',
                       color: 'inherit',
                       justifyContent: 'center',
+                      '& svg': { fontSize: 22 },
                     }}
                   >
                     {iconMap[link.icon] || <DashboardIcon />}
                   </ListItemIcon>
                   <Collapse in={open} orientation="horizontal" unmountOnExit>
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75, width: '100%' }}>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 0.75,
+                        width: '100%',
+                        position: 'relative',
+                      }}
+                    >
                       <ListItemText
                         primary={link.label}
                         primaryTypographyProps={{
-                          fontSize: '0.85rem',
+                          fontSize: '0.95rem',
                           fontWeight: isActive ? 600 : 400,
                           noWrap: true,
                         }}
                       />
                       {!isAllowed && (
                         <Chip
+                          className="not-implemented-badge"
                           label="Not implemented"
                           size="small"
                           sx={{
+                            position: 'absolute',
+                            top: 3,
+                            left: 36,
                             height: 20,
+                            minWidth: 136,
                             fontSize: '0.58rem',
                             textTransform: 'uppercase',
                             bgcolor: '#DFE1E6',
                             color: '#42526E',
+                            opacity: 0,
+                            pointerEvents: 'none',
+                            transition: 'opacity 140ms ease',
                             '& .MuiChip-label': { px: 0.7, fontWeight: 700 },
                           }}
                         />

@@ -4,6 +4,7 @@ import { Box } from '@mui/material';
 import Sidebar from '../components/Navigation/Sidebar';
 import NavbarTop from '../components/Navigation/NavbarTop';
 import NavbarLeft from '../components/Navigation/NavbarLeft';
+import SnowfallOverlay from '../components/common/SnowfallOverlay';
 
 const ProjectLayout: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -36,8 +37,11 @@ const ProjectLayout: React.FC = () => {
           flexDirection: 'column',
           overflow: 'hidden',
           minWidth: 0,
+          position: 'relative',
         }}
       >
+        <SnowfallOverlay />
+
         {/* Top navbar */}
         <NavbarTop
           onMobileMenuToggle={() => setMobileOpen((prev) => !prev)}
@@ -53,6 +57,12 @@ const ProjectLayout: React.FC = () => {
             overflow: 'auto',
             p: { xs: 2, sm: 3 },
             bgcolor: '#FAFBFC',
+            position: 'relative',
+            zIndex: 1,
+            '& > *': {
+              position: 'relative',
+              zIndex: 3,
+            },
           }}
         >
           <Outlet />

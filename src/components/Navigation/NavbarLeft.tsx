@@ -25,21 +25,21 @@ const NavbarLeft: React.FC = () => {
           display: { xs: 'none', md: 'flex' },
           flexDirection: 'column',
           alignItems: 'center',
-          py: 2,
-          gap: 1,
+          pt: 3,
+          pb: 2.5,
+          gap: 0,
           flexShrink: 0,
         }}
       >
         <Tooltip title="Jira Clone" placement="right">
           <IconButton
             data-testid="left-logo-btn"
-            size="small"
             sx={{
-              width: 34,
-              height: 34,
-              bgcolor: '#1C63CE',
+              width: 32,
+              height: 32,
               color: 'white',
-              '&:hover': { bgcolor: '#2E74DE' },
+              borderRadius: 1,
+              '&:hover': { bgcolor: '#1C63CE' },
             }}
           >
             <DataObjectIcon fontSize="small" />
@@ -50,7 +50,13 @@ const NavbarLeft: React.FC = () => {
           <IconButton
             data-testid="search-btn"
             onClick={() => setSearchOpen(true)}
-            sx={{ color: 'white', '&:hover': { bgcolor: '#1C63CE' } }}
+            sx={{
+              width: 32,
+              height: 32,
+              mt: 0.5,
+              color: 'white',
+              '&:hover': { bgcolor: '#1C63CE' },
+            }}
           >
             <SearchIcon fontSize="small" />
           </IconButton>
@@ -60,7 +66,13 @@ const NavbarLeft: React.FC = () => {
           <IconButton
             data-testid="create-issue-btn"
             onClick={() => setAddIssueOpen(true)}
-            sx={{ color: 'white', '&:hover': { bgcolor: '#1C63CE' } }}
+            sx={{
+              width: 32,
+              height: 32,
+              mt: 0.5,
+              color: 'white',
+              '&:hover': { bgcolor: '#1C63CE' },
+            }}
           >
             <AddIcon fontSize="small" />
           </IconButton>
@@ -77,7 +89,12 @@ const NavbarLeft: React.FC = () => {
         <Tooltip title="About" placement="right">
           <IconButton
             data-testid="about-btn"
-            sx={{ color: 'white', '&:hover': { bgcolor: '#1C63CE' } }}
+            sx={{
+              width: 32,
+              height: 32,
+              color: 'white',
+              '&:hover': { bgcolor: '#1C63CE' },
+            }}
           >
             <HelpIcon fontSize="small" />
           </IconButton>

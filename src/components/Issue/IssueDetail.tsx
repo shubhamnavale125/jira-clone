@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Box, Grid, Typography, Divider, Skeleton, IconButton, Tooltip } from '@mui/material';
+import { Box, Grid, Typography, Divider, Skeleton, IconButton, Tooltip, Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import LinkIcon from '@mui/icons-material/Link';
 import FeedbackIcon from '@mui/icons-material/Feedback';
 import { useAppSelector } from '../../store/hooks';
 import IssueTitle from './IssueTitle';
@@ -40,10 +39,6 @@ const IssueDetail: React.FC<IssueDetailProps> = ({ issueId, onClose, onDeleted, 
     );
   }
 
-  const handleCopyLink = () => {
-    navigator.clipboard.writeText(`${window.location.origin}/project/issue/${issueId}`);
-  };
-
   return (
     <Box
       data-testid={testId || `issue-detail-${issueId}`}
@@ -55,13 +50,8 @@ const IssueDetail: React.FC<IssueDetailProps> = ({ issueId, onClose, onDeleted, 
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          px: 2,
-          py: 1.4,
-          borderBottom: '1px solid #F0F1F3',
-          position: 'sticky',
-          top: 0,
-          bgcolor: 'background.paper',
-          zIndex: 1,
+          pr: 2,
+          pt: 2,
         }}
       >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
@@ -72,21 +62,24 @@ const IssueDetail: React.FC<IssueDetailProps> = ({ issueId, onClose, onDeleted, 
         </Box>
         <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center' }}>
           <Tooltip title="Feedback">
-            <IconButton
+            <Button
               data-testid={`feedback-${issueId}`}
-              size="small"
               component="a"
               href="https://github.com/trungk18/jira-clone-angular/issues/new"
               target="_blank"
               rel="noreferrer"
+              size="small"
+              startIcon={<FeedbackIcon fontSize="small" />}
+              sx={{
+                textTransform: 'none',
+                fontSize: '0.78rem',
+                color: '#42526E',
+                minWidth: 0,
+                px: 1,
+              }}
             >
-              <FeedbackIcon fontSize="small" />
-            </IconButton>
-          </Tooltip>
-          <Tooltip title="Copy link">
-            <IconButton data-testid={`copy-link-${issueId}`} size="small" onClick={handleCopyLink}>
-              <LinkIcon fontSize="small" />
-            </IconButton>
+              Give Feedback
+            </Button>
           </Tooltip>
           <Tooltip title="Delete issue">
             <IconButton

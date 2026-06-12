@@ -96,9 +96,7 @@ const IssueComment: React.FC<IssueCommentProps> = ({
               data-testid={`comment-body-${comment.id}`}
               variant="body2"
               sx={{
-                p: 1.5,
-                bgcolor: 'grey.100',
-                borderRadius: 1,
+                color: '#172B4D',
                 whiteSpace: 'pre-wrap',
               }}
             >

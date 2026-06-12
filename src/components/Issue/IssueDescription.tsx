@@ -30,10 +30,6 @@ const IssueDescription: React.FC<IssueDescriptionProps> = ({ issueId, descriptio
 
   return (
     <Box data-testid={testId || `issue-description-${issueId}`} sx={{ mb: 3 }}>
-      <Typography variant="subtitle2" fontWeight={600} sx={{ mb: 1 }}>
-        Description
-      </Typography>
-
       {editing ? (
         <Box>
           <Suspense fallback={<CircularProgress size={20} />}>

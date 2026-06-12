@@ -41,8 +41,8 @@ const SearchDrawer: React.FC<SearchDrawerProps> = ({ open, onClose }) => {
       data-testid="search-drawer"
       sx={{
         '& .MuiDrawer-paper': {
-          width: { xs: '100%', sm: 360 },
-          p: 2,
+          width: { xs: '100%', sm: 500 },
+          p: 3,
         },
       }}
     >
@@ -62,15 +62,25 @@ const SearchDrawer: React.FC<SearchDrawerProps> = ({ open, onClose }) => {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         autoFocus
-        size="small"
+        size="medium"
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
-              <SearchIcon fontSize="small" />
+              <SearchIcon sx={{ fontSize: 26, color: '#6B778C' }} />
             </InputAdornment>
           ),
         }}
-        sx={{ mb: 2 }}
+        sx={{
+          mb: 2,
+          '& .MuiOutlinedInput-root': {
+            borderRadius: 1,
+            '& fieldset': { borderColor: '#DFE1E6' },
+          },
+          '& .MuiInputBase-input': {
+            py: 1.2,
+            fontSize: 15,
+          },
+        }}
       />
 
       <Typography variant="caption" color="text.secondary" sx={{ mb: 1, display: 'block' }}>

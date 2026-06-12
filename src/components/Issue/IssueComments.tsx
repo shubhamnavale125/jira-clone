@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Typography, Avatar, TextField, Button, Divider } from '@mui/material';
+import { Box, Avatar, TextField, Button, Typography } from '@mui/material';
 import { JComment, JUser } from '../../types';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { addComment } from '../../store/slices/projectSlice';
@@ -35,23 +35,6 @@ const IssueComments: React.FC<IssueCommentsProps> = ({ issueId, comments, users,
 
   return (
     <Box data-testid={testId || `issue-comments-${issueId}`} sx={{ mt: 2 }}>
-      <Typography variant="subtitle2" fontWeight={600} sx={{ mb: 2 }}>
-        Comments ({comments?.length || 0})
-      </Typography>
-
-      {/* Existing Comments */}
-      {(comments || []).map((comment) => (
-        <IssueComment
-          key={comment.id}
-          comment={comment}
-          issueId={issueId}
-          users={users}
-          isCurrentUser={comment.userId === auth?.id}
-        />
-      ))}
-
-      <Divider sx={{ my: 2 }} />
-
       {/* Add Comment */}
       {adding ? (
         <Box sx={{ display: 'flex', gap: 1.5 }}>
@@ -78,6 +61,9 @@ const IssueComments: React.FC<IssueCommentsProps> = ({ issueId, comments, users,
                 }
               }}
             />
+            <Typography variant="caption" color="text.secondary">
+              <strong>Pro tip:</strong> press Cmd/Ctrl + Enter to comment
+            </Typography>
             <Box sx={{ display: 'flex', gap: 1 }}>
               <Button
                 data-testid={`submit-comment-${issueId}`}
@@ -105,14 +91,27 @@ const IssueComments: React.FC<IssueCommentsProps> = ({ issueId, comments, users,
       ) : (
         <Button
           data-testid={`add-comment-btn-${issueId}`}
-          variant="outlined"
+          variant="text"
           size="small"
           onClick={() => setAdding(true)}
-          sx={{ fontSize: '0.75rem', textTransform: 'none' }}
+          sx={{ fontSize: '0.75rem', textTransform: 'none', px: 0.5 }}
         >
           Add Comment
         </Button>
       )}
+
+      {/* Existing Comments */}
+      <Box sx={{ mt: 1.5 }}>
+        {(comments || []).map((comment) => (
+          <IssueComment
+            key={comment.id}
+            comment={comment}
+            issueId={issueId}
+            users={users}
+            isCurrentUser={comment.userId === auth?.id}
+          />
+        ))}
+      </Box>
     </Box>
   );
 };

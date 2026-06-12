@@ -80,11 +80,12 @@ const BoardDndList: React.FC<BoardDndListProps> = ({
             data-testid={`droppable-${status.toLowerCase()}`}
             sx={{
               flex: 1,
-              minHeight: 100,
+              minHeight: 400,
               bgcolor: snapshot.isDraggingOver ? 'rgba(9, 30, 66, 0.04)' : 'transparent',
               borderRadius: 0,
               pl: 1,
-              pr: 0.7,
+              pr: 0.9,
+              pb: 0.5,
               display: 'flex',
               flexDirection: 'column',
               gap: 0.7,

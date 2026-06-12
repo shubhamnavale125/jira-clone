@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import { useAppSelector } from '../store/hooks';
 import Breadcrumbs from '../components/common/Breadcrumbs';
 import BoardFilter from '../components/Board/BoardFilter';
@@ -31,39 +31,42 @@ const BoardPage: React.FC = () => {
           data-testid="board-title"
           variant="h5"
           fontWeight={500}
-          sx={{ fontSize: 22, color: '#172B4D' }}
+          sx={{ fontSize: 24, color: '#172B4D' }}
           gutterBottom
         >
-          Kanban Board
+          Kanban board
         </Typography>
 
         <Box
           sx={{
             display: 'flex',
             alignItems: 'center',
-            gap: 2,
+            gap: 1,
             flexWrap: 'wrap',
           }}
         >
-          {/* Social links */}
-          <Box
+          <Button
             component="a"
             href="https://github.com/trungk18/jira-clone-angular"
             target="_blank"
             rel="noopener noreferrer"
             data-testid="github-link"
+            variant="outlined"
+            size="small"
             sx={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 0.5,
-              fontSize: '0.75rem',
-              color: 'text.secondary',
-              textDecoration: 'none',
-              '&:hover': { color: 'primary.main' },
+              height: 30,
+              px: 1.2,
+              borderColor: '#DFE1E6',
+              color: '#42526E',
+              textTransform: 'none',
+              fontSize: '0.74rem',
+              fontWeight: 600,
+              bgcolor: '#F4F5F7',
+              '&:hover': { borderColor: '#C1C7D0', bgcolor: '#EBECF0' },
             }}
           >
-            ⭐ Source Code
-          </Box>
+            Source Code
+          </Button>
         </Box>
       </Box>
 

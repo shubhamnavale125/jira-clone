@@ -41,8 +41,8 @@ const BoardFilter: React.FC = () => {
         size="small"
         sx={{
           width: { xs: '100%', sm: 160 },
-          '& .MuiOutlinedInput-root': { height: 40, bgcolor: 'white' },
-          '& .MuiInputBase-input': { fontSize: 16 },
+          '& .MuiOutlinedInput-root': { height: 36, bgcolor: 'white' },
+          '& .MuiInputBase-input': { fontSize: 13 },
         }}
         InputProps={{
           startAdornment: (
@@ -89,22 +89,21 @@ const BoardFilter: React.FC = () => {
       {/* Only My Issues */}
       <Button
         data-testid="only-my-issues-btn"
-        variant={filter.onlyMyIssue ? 'contained' : 'outlined'}
+        variant={filter.onlyMyIssue ? 'contained' : 'text'}
         size="small"
         onClick={() => dispatch(toggleOnlyMyIssue())}
         sx={{
-          height: 40,
+          height: 32,
           px: 1.7,
-          fontSize: '0.76rem',
+          fontSize: '0.75rem',
           fontWeight: 600,
           textTransform: 'none',
           whiteSpace: 'nowrap',
           borderColor: '#DFE1E6',
           color: filter.onlyMyIssue ? 'white' : '#172B4D',
-          bgcolor: filter.onlyMyIssue ? '#0052CC' : 'white',
+          bgcolor: filter.onlyMyIssue ? '#0052CC' : 'transparent',
           '&:hover': {
-            borderColor: '#C1C7D0',
-            bgcolor: filter.onlyMyIssue ? '#0052CC' : '#F7F8F9',
+            bgcolor: filter.onlyMyIssue ? '#0052CC' : '#EBECF0',
           },
         }}
       >
@@ -114,22 +113,21 @@ const BoardFilter: React.FC = () => {
       {/* Ignore Resolved */}
       <Button
         data-testid="ignore-resolved-btn"
-        variant={filter.ignoreResolved ? 'contained' : 'outlined'}
+        variant={filter.ignoreResolved ? 'contained' : 'text'}
         size="small"
         onClick={() => dispatch(toggleIgnoreResolved())}
         sx={{
-          height: 40,
+          height: 32,
           px: 1.7,
-          fontSize: '0.76rem',
+          fontSize: '0.75rem',
           fontWeight: 600,
           textTransform: 'none',
           whiteSpace: 'nowrap',
           borderColor: '#DFE1E6',
           color: filter.ignoreResolved ? 'white' : '#172B4D',
-          bgcolor: filter.ignoreResolved ? '#0052CC' : 'white',
+          bgcolor: filter.ignoreResolved ? '#0052CC' : 'transparent',
           '&:hover': {
-            borderColor: '#C1C7D0',
-            bgcolor: filter.ignoreResolved ? '#0052CC' : '#F7F8F9',
+            bgcolor: filter.ignoreResolved ? '#0052CC' : '#EBECF0',
           },
         }}
       >
@@ -139,7 +137,7 @@ const BoardFilter: React.FC = () => {
       {/* Clear All */}
       {hasActiveFilters && (
         <Box sx={{ display: 'flex', alignItems: 'center', ml: 0.4, minHeight: 40 }}>
-          <Box sx={{ width: '1px', height: 40, bgcolor: '#DFE1E6', mr: 1.2 }} />
+          <Box sx={{ width: '1px', height: 32, bgcolor: '#DFE1E6', mr: 1.2 }} />
           <Button
             data-testid="clear-filters-btn"
             variant="outlined"
@@ -147,7 +145,7 @@ const BoardFilter: React.FC = () => {
             onClick={() => dispatch(resetFilters())}
             startIcon={<ClearIcon fontSize="small" />}
             sx={{
-              height: 40,
+              height: 32,
               px: 1.2,
               minWidth: 'fit-content',
               fontSize: '0.74rem',

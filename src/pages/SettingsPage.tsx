@@ -9,9 +9,6 @@ import {
   Select,
   MenuItem,
   Grid,
-  Paper,
-  Alert,
-  Divider,
 } from '@mui/material';
 import { useAppSelector, useAppDispatch } from '../store/hooks';
 import { updateProject } from '../store/slices/projectSlice';
@@ -27,7 +24,6 @@ const SettingsPage: React.FC = () => {
   const [url, setUrl] = useState(project?.url || '');
   const [category, setCategory] = useState(project?.category || ProjectCategory.SOFTWARE);
   const [description, setDescription] = useState(project?.description || '');
-  const [saved, setSaved] = useState(false);
 
   useEffect(() => {
     if (project) {
@@ -40,8 +36,6 @@ const SettingsPage: React.FC = () => {
 
   const handleSave = () => {
     dispatch(updateProject({ name, url, category, description }));
-    setSaved(true);
-    setTimeout(() => setSaved(false), 3000);
   };
 
   return (
@@ -54,20 +48,10 @@ const SettingsPage: React.FC = () => {
         ]}
       />
 
-      <Typography data-testid="settings-title" variant="h5" fontWeight={700} gutterBottom>
+      <Typography data-testid="settings-title" variant="h5" fontWeight={500} gutterBottom>
         Project Settings
       </Typography>
-      <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
-        Manage your project details and configuration.
-      </Typography>
-
-      {saved && (
-        <Alert data-testid="settings-saved-alert" severity="success" sx={{ mb: 2 }}>
-          Project settings saved successfully!
-        </Alert>
-      )}
-
-      <Paper elevation={0} sx={{ border: '1px solid', borderColor: 'divider', p: 3 }}>
+      <Box sx={{ mt: 1.5 }}>
         <Grid container spacing={3}>
           {/* Name */}
           <Grid item xs={12}>
@@ -78,7 +62,7 @@ const SettingsPage: React.FC = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               size="small"
-              helperText="This is the name of your project."
+              placeholder="Project Name"
             />
           </Grid>
 
@@ -92,7 +76,6 @@ const SettingsPage: React.FC = () => {
               onChange={(e) => setUrl(e.target.value)}
               size="small"
               placeholder="https://github.com/..."
-              helperText="Optional: Link to the repository or website."
             />
           </Grid>
 
@@ -130,25 +113,24 @@ const SettingsPage: React.FC = () => {
               multiline
               rows={4}
               size="small"
-              helperText="Describe your project in a few sentences."
+              placeholder="Project Description"
             />
           </Grid>
         </Grid>
 
-        <Divider sx={{ my: 3 }} />
-
-        <Box sx={{ display: 'flex', gap: 2 }}>
+        <Box sx={{ display: 'flex', gap: 1.5, mt: 3 }}>
           <Button
             data-testid="save-settings-btn"
             variant="contained"
             onClick={handleSave}
             disabled={!name.trim()}
+            sx={{ textTransform: 'none' }}
           >
-            Save Changes
+            Save
           </Button>
           <Button
             data-testid="cancel-settings-btn"
-            variant="outlined"
+            variant="text"
             onClick={() => {
               if (project) {
                 setName(project.name);
@@ -157,11 +139,12 @@ const SettingsPage: React.FC = () => {
                 setDescription(project.description);
               }
             }}
+            sx={{ textTransform: 'none' }}
           >
             Cancel
           </Button>
         </Box>
-      </Paper>
+      </Box>
     </Box>
   );
 };

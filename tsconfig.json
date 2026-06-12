@@ -21,7 +21,7 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src", "tests", "vite.config.ts", "playwright.config.ts"],
+  "include": ["src", "tests"],
   "exclude": ["node_modules", "dist", "playwright-report", "test-results"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
